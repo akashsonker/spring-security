@@ -8,12 +8,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-	/*
-	 * While login into system the possibilites are-
-	 * 1.successfully logged in.
-	 * 2.got error while logging in.
-	 * 3.successfuly logout
-	 */
+	
+	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+	public ModelAndView welcomePage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Custom Login Form");
+		model.addObject("message", "This is welcome page!");
+		model.setViewName("hello");
+		return model;
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
